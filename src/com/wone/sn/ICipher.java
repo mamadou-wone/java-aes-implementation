@@ -26,14 +26,14 @@ public interface ICipher {
      * @param iv Le vecteur d'initialisation
      * @param key la clé secrete
      * @param mode le mode ENCRYPT/DECRYPT
-     * @return L'instance de Pour le Dechiffrement
+     * @return L'instance de Pour le Chiffement ou Dechiffrement
      */
     public Cipher getCipher(String cipherAlgorithm, IvParameterSpec iv, SecretKey key, int mode);
 
     /**
      * *
      * @param c L'instance (Chiffement ou Dechiffrement)
-     * @param originalFilePath Le chemein du fichier à chiffrer
+     * @param originalFilePath Le chemin du fichier à chiffrer
      * @param encryptFilePath Le chemin du fichier à enregistrer
      * @return True si l'opération s'est bien déroulée sinon false
      */

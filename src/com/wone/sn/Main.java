@@ -3,13 +3,57 @@ package com.wone.sn;
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
 import javax.swing.*;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
+/**
+ * @author mamadou-wone
+ */
 public class Main {
 
     public static void main(String[] args) {
-        genKey();
-        enCrypt();
-        deCrypt();
+        initOperation();
+    }
+
+    public static void initOperation() {
+        int inputCount = 0;
+        boolean start = true;
+        while (start) {
+            System.out.println("Hello que souhaitez vous faire ? ");
+            System.out.println("*********************************** ");
+            System.out.println("1 - Générer une clé ? ");
+            System.out.println("2 - Chiffrer un fichier  ? ");
+            System.out.println("3 - Déchiffrer un fichier ? ");
+            try {
+                Scanner sc = new Scanner(System.in);
+                int input = sc.nextInt();
+                switch (input) {
+                    case 1 -> {
+                        genKey();
+                        start = false;
+                    }
+                    case 2 -> {
+                        enCrypt();
+                        start = false;
+                    }
+                    case 3 -> {
+                        deCrypt();
+                        start = false;
+                    }
+                    default -> {
+                        System.out.println("Nous ne comprenons pas  votre choix :(");
+                        start = false;
+                    }
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Cette action n'est pas permise :( . Suivez les insctruction SVP !");
+                inputCount++;
+                if (inputCount == 3) {
+                    start = false;
+                    System.out.println("Désolez nous ne pouvons pas traiter votre demande :(");
+                }
+            }
+        }
     }
 
     public static void genKey() {
